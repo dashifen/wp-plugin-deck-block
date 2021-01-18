@@ -80,6 +80,7 @@ class DeckBlock extends AbstractPluginHandler
   public function renderDeck(array $attributes, string $content): string
   {
     $format = '<div class="wp-block-dashifen-deck %s">%s</div>';
+    
     return sprintf(
       $format,
       $attributes['perRowClass'] ?? 'three-cards',

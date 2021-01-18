@@ -1,55 +1,25 @@
 import {memoize, times} from "lodash";
 
 const DeckEdit = (props) => {
-  const {setAttributes} = props;
-  const {perRow, perRowClass} = props.attributes;
-  const {InnerBlocks, InspectorControls} = wp.blockEditor;
-  const {PanelBody, RangeControl} = wp.components;
+
+  // we're not currently using properties within the Deck editor.  but, we
+  // pass them here so that we don't have to remember to add them when we get
+  // to that point.  first, we import various WP objects from core, then we
+  // set up a few things related to this block specifically.  finally, we
+  // return the JSX fragment that the block editor uses to show a deck.
+
   const {Fragment} = wp.element;
-
+  const {InnerBlocks} = wp.blockEditor;
   const allowedBlocks = ['dashifen/card'];
-
-  const onChangePerRow = (value) => {
-    if (value === 2) {
-      setAttributes({perRowClass: 'two-cards'});
-    } else if (value === 3) {
-      setAttributes({perRowClass: 'three-cards'});
-    } else if (value === 4) {
-      setAttributes({perRowClass: 'four-cards'});
-    }
-    setAttributes({perRow: value});
-  };
-
   const getCardsTemplate = memoize((quantity) => {
     return times(quantity, () => allowedBlocks);
   });
 
-  if (perRowClass === '') {
-    setAttributes({perRowClass: 'three-cards'});
-  }
-
   return (
     <Fragment>
-      <InspectorControls>
-        { /* Number of cards to display per row. */}
-        <PanelBody title='Cards'>
-          <RangeControl
-            label='Number of cards in this deck'
-            help='This card deck may display between 2 and 4 cards per row on large screens.'
-            value={perRow}
-            onChange={onChangePerRow}
-            min={2}
-            max={4}
-          />
-        </PanelBody>
-      </InspectorControls>
-
-      { /* The block itself. */}
       <div className={'dashifen-deck in-editor icon-deck'}>
-        <InnerBlocks
-          template={getCardsTemplate(3)}
-          allowedBlocks={allowedBlocks}
-        />
+        <span className={'dashifen-deck-title'}>Deck</span>
+        <InnerBlocks template={getCardsTemplate(1)} allowedBlocks={allowedBlocks}/>
       </div>
     </Fragment>
   );

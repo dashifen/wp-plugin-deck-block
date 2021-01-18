@@ -1,5 +1,10 @@
 <?php
 /**
+ * Plugin Name:  Dashifen's Deck Block
+ * Description: A WordPress Deck block, which contains between two and four Cards.
+ * Author URI: mailto:dashifen@dashifen.com
+ * Author: David Dashifen Kees
+ *
  * @noinspection PhpIncludeInspection
  */
 

@@ -2,8 +2,8 @@ import Icons from '../icons.js';
 import DeckEdit from './deck-edit.js';
 
 const Deck = (() => {
-  const { registerBlockType } = wp.registerBlockType;
-  const { InnerBlocks } = wp.blockEditor;
+  const {registerBlockType} = wp.blocks;
+  const {InnerBlocks} = wp.blockEditor;
 
   registerBlockType('dashifen/deck', {
     title: 'Deck',
@@ -13,22 +13,14 @@ const Deck = (() => {
     supports: {
       customClassName: false
     },
-    attributes: {
-      perRow: {
-        default: 3
-      },
-      perRowClass: {
-        type: 'text',
-        default: 'three'
-      }
-    },
+    attributes: {},
 
-    edit: () => {
-      return DeckEdit();
+    edit: (props) => {
+      return DeckEdit(props);
     },
 
     save: () => {
-      return <InnerBlocks.Content />;
+      return <InnerBlocks.Content/>;
     }
   });
 });

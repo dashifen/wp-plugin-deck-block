@@ -1,7 +1,6 @@
 const CardEdit = (props) => {
   const {setAttributes} = props;
   const {heading, body} = props.attributes;
-  const {TextControl} = wp.components;
   const {RichText} = wp.blockEditor;
   const {Fragment} = wp.element;
 
@@ -16,20 +15,19 @@ const CardEdit = (props) => {
   return (
     <Fragment>
       <div className='dashifen-card in-editor icon-card'>
+        <span className='dashifen-card-title'>Card</span>
         <div className='card-heading-container'>
-          <p className='card-heading'>Card Heading</p>
-          <TextControl
-            id='card-heading'
-            className='card-heading-input'
-            label='Card Heading'
+          <RichText
+            placeholder='Enter heading here'
+            className='card-heading'
+            allowedFormats={[]}
             value={heading}
             onChange={onChangeHeading}
           />
         </div>
         <div className='card-body-container'>
-          <p className='card-body'>Card Body</p>
           <RichText
-            placeholder='Entre card body'
+            placeholder='Enter body here'
             className='card-body'
             allowedFormats={['core/bold', 'core/italic']}
             value={body}

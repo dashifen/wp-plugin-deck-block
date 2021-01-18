@@ -1,0 +1,33 @@
+.dashifen-deck.in-editor,
+.dashifen-card.in-editor {
+  border: 1px solid #a0a0a0;
+  padding: 10px 11px 10px 10px;
+  position: relative;
+
+  .dashifen-deck-title,
+  .dashifen-card-title {
+    background-color: #FFF;
+    color: #1e1e1e;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif;
+    font-size: .8125rem;
+    left: 5px;
+    line-height: 1.4;
+    padding: 0 5px;
+    position: absolute;
+    top: -.6875rem;
+    z-index: 10;
+  }
+
+  .dashifen-card-title {
+    counter-increment: cards;
+
+    &:after {
+      content: ' #' counter(cards);
+    }
+  }
+}
+
+.dashifen-deck.in-editor {
+  counter-reset: cards;
+}
+

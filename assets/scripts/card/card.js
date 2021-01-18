@@ -2,8 +2,7 @@ import Icons from '../icons.js';
 import CardEdit from './card-edit.js';
 
 const Card = (() => {
-  const {registerBlockType} = wp.registerBlockType;
-  const {InnerBlocks} = wp.blockEditor;
+  const { registerBlockType } = wp.blocks;
 
   registerBlockType('dashifen/card', {
     title: 'Card',
@@ -18,8 +17,8 @@ const Card = (() => {
       body: {type: 'text'}
     },
 
-    edit: () => {
-      return CardEdit();
+    edit: (props) => {
+      return (CardEdit(props));
     },
 
     save: () => {
