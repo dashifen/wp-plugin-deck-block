@@ -1,0 +1,26 @@
+{
+  "name": "dashifen/deck-block",
+  "description": "A WordPress Deck block, which contains between two and four Cards.",
+  "minimum-stability": "stable",
+  "type": "wordpress-plugin",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "David Dashifen Kees",
+      "email": "dashifen@dashifen.edu"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Dashifen\\Blocks\\DeckBlock\\": "src"
+    }
+  },
+  "require": {
+    "php": ">=7.4",
+    "dashifen/wp-handler": "^10.2"
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "sort-packages": true
+  }
+}
