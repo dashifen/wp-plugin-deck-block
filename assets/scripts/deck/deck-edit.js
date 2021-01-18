@@ -11,11 +11,11 @@ const DeckEdit = (props) => {
 
   const onChangePerRow = (value) => {
     if (value === 2) {
-      setAttributes({perRowClass: 'two'});
+      setAttributes({perRowClass: 'two-cards'});
     } else if (value === 3) {
-      setAttributes({perRowClass: 'three'});
+      setAttributes({perRowClass: 'three-cards'});
     } else if (value === 4) {
-      setAttributes({perRowClass: 'four'});
+      setAttributes({perRowClass: 'four-cards'});
     }
     setAttributes({perRow: value});
   };
@@ -25,7 +25,7 @@ const DeckEdit = (props) => {
   });
 
   if (perRowClass === '') {
-    setAttributes({perRowClass: 'three'});
+    setAttributes({perRowClass: 'three-cards'});
   }
 
   return (

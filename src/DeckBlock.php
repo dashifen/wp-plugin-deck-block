@@ -50,7 +50,7 @@ class DeckBlock extends AbstractPluginHandler
         'render_callback' => [$this, 'renderDeck'],
         'attributes'      => [
           'perRow'      => ['type' => 'number', 'default' => 3],
-          'perRowClass' => ['type' => 'string', 'default' => 'three'],
+          'perRowClass' => ['type' => 'string', 'default' => 'three-cards'],
         ],
       ]
     );
@@ -72,14 +72,19 @@ class DeckBlock extends AbstractPluginHandler
    *
    * Renders a deck block.
    *
-   * @param array $attributes
+   * @param array  $attributes
+   * @param string $content
    *
    * @return string
    */
-  public function renderDeck(array $attributes): string
+  public function renderDeck(array $attributes, string $content): string
   {
-    
-    return '';
+    $format = '<div class="wp-block-dashifen-deck %s">%s</div>';
+    return sprintf(
+      $format,
+      $attributes['perRowClass'] ?? 'three-cards',
+      $content
+    );
   }
   
   /**
@@ -93,7 +98,17 @@ class DeckBlock extends AbstractPluginHandler
    */
   public function renderCard(array $attributes): string
   {
+    $format = <<< CARD
+      <div class="wp-block-dashifen-card">
+        <h2>%s</h2>
+        <p>%s</p>
+      </div>
+CARD;
     
-    return '';
+    return sprintf(
+      $format,
+      $attributes['heading'] ?? 'Please enter a heading for this card.',
+      $attributes['body'] ?? 'Please enter a body for this card.'
+    );
   }
 }
