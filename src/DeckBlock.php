@@ -59,7 +59,10 @@ class DeckBlock extends AbstractPluginHandler
       'dashifen/card',
       [
         'render_callback' => [$this, 'renderCard'],
-        'attributes'      => [],
+        'attributes'      => [
+          'heading' => ['type' => 'string'],
+          'body'    => ['type' => 'string'],
+        ],
       ]
     );
   }

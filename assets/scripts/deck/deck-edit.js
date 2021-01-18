@@ -7,7 +7,7 @@ const DeckEdit = (props) => {
   const {PanelBody, RangeControl} = wp.components;
   const {Fragment} = wp.element;
 
-  const allowedBlocks = ['firefly/card'];
+  const allowedBlocks = ['dashifen/card'];
 
   const onChangePerRow = (value) => {
     if (value === 2) {
@@ -45,7 +45,7 @@ const DeckEdit = (props) => {
       </InspectorControls>
 
       { /* The block itself. */}
-      <div className={'card-deck in-editor icon-deck'}>
+      <div className={'dashifen-deck in-editor icon-deck'}>
         <InnerBlocks
           template={getCardsTemplate(3)}
           allowedBlocks={allowedBlocks}

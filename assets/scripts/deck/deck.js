@@ -1,11 +1,11 @@
 import Icons from '../icons.js';
-import DeckEdit from './edit.js';
+import DeckEdit from './deck-edit.js';
 
 const Deck = (() => {
   const { registerBlockType } = wp.registerBlockType;
   const { InnerBlocks } = wp.blockEditor;
 
-  registerBlockType('firefly/deck', {
+  registerBlockType('dashifen/deck', {
     title: 'Deck',
     category: 'layout',
     description: 'A block providing a container for a set of cards.',

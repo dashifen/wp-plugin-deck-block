@@ -1,3 +1,5 @@
-import initializeDeck from './deck/index.js';
+import initializeDeck from './deck/deck.js';
+import initializeCard from './card/card.js';
 
 initializeDeck();
+initializeCard();
