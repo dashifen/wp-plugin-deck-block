@@ -82,7 +82,7 @@ class DeckBlock extends AbstractPluginHandler
     // remove the @noinspection rule above.
     
     $format = '<div class="wp-block-dashifen-deck">%s</div>';
-    return sprintf($format, $content );
+    return sprintf($format, $content) . '<!-- ' . print_r($attributes, true) . ' -->';
   }
   
   /**
