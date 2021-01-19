@@ -48,10 +48,7 @@ class DeckBlock extends AbstractPluginHandler
       'dashifen/deck',
       [
         'render_callback' => [$this, 'renderDeck'],
-        'attributes'      => [
-          'perRow'      => ['type' => 'number', 'default' => 3],
-          'perRowClass' => ['type' => 'string', 'default' => 'three-cards'],
-        ],
+        'attributes'      => [],
       ]
     );
     
@@ -76,16 +73,16 @@ class DeckBlock extends AbstractPluginHandler
    * @param string $content
    *
    * @return string
+   * @noinspection PhpUnusedParameterInspection
    */
   public function renderDeck(array $attributes, string $content): string
   {
-    $format = '<div class="wp-block-dashifen-deck %s">%s</div>';
+    // at the moment, we don't need the $attributes parameter here, but we
+    // do need our content.  if we need the $attributes later, then we can also
+    // remove the @noinspection rule above.
     
-    return sprintf(
-      $format,
-      $attributes['perRowClass'] ?? 'three-cards',
-      $content
-    );
+    $format = '<div class="wp-block-dashifen-deck">%s</div>';
+    return sprintf($format, $content );
   }
   
   /**
