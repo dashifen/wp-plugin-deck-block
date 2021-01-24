@@ -73,16 +73,29 @@ class DeckBlock extends AbstractPluginHandler
    * @param string $content
    *
    * @return string
-   * @noinspection PhpUnusedParameterInspection
    */
   public function renderDeck(array $attributes, string $content): string
   {
-    // at the moment, we don't need the $attributes parameter here, but we
-    // do need our content.  if we need the $attributes later, then we can also
-    // remove the @noinspection rule above.
-    
-    $format = '<div class="wp-block-dashifen-deck">%s</div>';
-    return sprintf($format, $content) . '<!-- ' . print_r($attributes, true) . ' -->';
+    $cardCount = $attributes['cardCount'] ?? $this->countCards($content);
+    $format = '<div class="wp-block-dashifen-deck %s" data-card-count="%d">%s</div>';
+    return sprintf($format, 'cards-' . $cardCount, $cardCount, $content);
+  }
+  
+  /**
+   * countCards
+   *
+   * Until we identify a way for the block editor to count the number of cards
+   * in a deck for us, we'll rely on counting the number of times that we find
+   * the card class within the deck's content and return a class based on that
+   * discovery.
+   *
+   * @param string $deckContent
+   *
+   * @return int
+   */
+  private function countCards(string $deckContent): int
+  {
+    return substr_count($deckContent, 'wp-block-dashifen-card');
   }
   
   /**
@@ -98,8 +111,8 @@ class DeckBlock extends AbstractPluginHandler
   {
     $format = <<< CARD
       <div class="wp-block-dashifen-card">
-        <h2>%s</h2>
-        <p>%s</p>
+        <h2 class="heading">%s</h2>
+        <p class="body">%s</p>
       </div>
 CARD;
     
