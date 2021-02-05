@@ -21,7 +21,7 @@ function css() {
     .pipe(dest('assets'));
 }
 
-function build() {
+async function build() {
   parallel(js, css);
 }
 

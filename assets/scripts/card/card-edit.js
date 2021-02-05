@@ -29,7 +29,7 @@ const CardEdit = (props) => {
           <RichText
             placeholder='Enter body here'
             className='card-body'
-            allowedFormats={['core/bold', 'core/italic']}
+            allowedFormats={['core/bold', 'core/italic', 'editorskit/abbreviation']}
             value={body}
             onChange={onChangeBody}
           />

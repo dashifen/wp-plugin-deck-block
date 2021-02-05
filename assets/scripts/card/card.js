@@ -8,6 +8,7 @@ const Card = (() => {
     title: 'Card',
     category: 'layout',
     description: 'A block that displays as a card within a deck.',
+    parent: ['dashifen/deck'],
     icon: Icons.card,
     supports: {
       customClassName: false
