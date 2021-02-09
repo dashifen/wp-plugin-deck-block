@@ -76,9 +76,17 @@ class DeckBlock extends AbstractPluginHandler
    */
   public function renderDeck(array $attributes, string $content): string
   {
+    $format = '<div class="%s" data-card-count="%d">%s</div>';
     $cardCount = $attributes['cardCount'] ?? $this->countCards($content);
-    $format = '<div class="wp-block-dashifen-deck %s" data-card-count="%d">%s</div>';
-    return sprintf($format, 'cards-' . $cardCount, $cardCount, $content);
+    
+    // we start with a reasonable default with respect to our deck classes and
+    // then we add a filter that folks could use to alter them.  this lets a
+    // theme using this block add classes it needs to make its display work
+    // without being forced to repeat CSS rules in multiple places, hopefully.
+    
+    $classes = ['wp-block-dashifen-deck', 'cards-' . $cardCount];
+    $classes = apply_filters('dashifen-deck-classes', $classes);
+    return sprintf($format, join(' ', $classes), $cardCount, $content);
   }
   
   /**
@@ -110,15 +118,25 @@ class DeckBlock extends AbstractPluginHandler
   public function renderCard(array $attributes): string
   {
     $format = <<< CARD
-      <div class="wp-block-dashifen-card">
-        <h2 class="heading">%s</h2>
-        <p class="body">%s</p>
+      <div class="%s">
+        <h2 class="%s">%s</h2>
+        <p class="%s">%s</p>
       </div>
 CARD;
     
+    
+    
     return sprintf(
       $format,
+      
+      // like for our deck above, we want some reasonable defaults to begin
+      // with for our classes.  but, we also add some filters that should let
+      // folks alter these to fit with their theme's needs.
+      
+      apply_filters('dashifen-card-classes', ['wp-block-dashifen-card']),
+      apply_filters('dashifen-card-heading-classes', ['heading']),
       $attributes['heading'] ?? 'Please enter a heading for this card.',
+      apply_filters('dashifen-card-body-classes', ['body']),
       $attributes['body'] ?? 'Please enter a body for this card.'
     );
   }
