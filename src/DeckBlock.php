@@ -124,20 +124,24 @@ class DeckBlock extends AbstractPluginHandler
       </div>
 CARD;
     
+    // we offer a lot of filters here.  we'll do all that work first, and then,
+    // we can cram the results of those filters into the $format we just
+    // defined.  like for the deck above, we filter our default classes so
+    // that themes can alter our defaults here.
     
+    $cardClasses = apply_filters('dashifen-card-classes', ['wp-block-dashifen-card']);
+    $headingClasses = apply_filters('dashifen-card-heading-classes', ['heading']);
+    $bodyClasses = apply_filters('dashifen-card-body-classes', ['body']);
+    $attributes['heading'] ??= 'Please enter a heading for this card.';
+    $attributes['body'] ??= 'Please enter a body for this card.';
     
     return sprintf(
       $format,
-      
-      // like for our deck above, we want some reasonable defaults to begin
-      // with for our classes.  but, we also add some filters that should let
-      // folks alter these to fit with their theme's needs.
-      
-      apply_filters('dashifen-card-classes', ['wp-block-dashifen-card']),
-      apply_filters('dashifen-card-heading-classes', ['heading']),
-      $attributes['heading'] ?? 'Please enter a heading for this card.',
-      apply_filters('dashifen-card-body-classes', ['body']),
-      $attributes['body'] ?? 'Please enter a body for this card.'
+      join(' ', $cardClasses),
+      join(' ', $headingClasses),
+      $attributes['heading'],
+      join(' ', $bodyClasses),
+      $attributes['body']
     );
   }
 }
