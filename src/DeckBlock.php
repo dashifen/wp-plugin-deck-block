@@ -129,19 +129,12 @@ CARD;
     // defined.  like for the deck above, we filter our default classes so
     // that themes can alter our defaults here.
     
-    $cardClasses = apply_filters('dashifen-card-classes', ['wp-block-dashifen-card']);
-    $headingClasses = apply_filters('dashifen-card-heading-classes', ['heading']);
-    $bodyClasses = apply_filters('dashifen-card-body-classes', ['body']);
-    $attributes['heading'] ??= 'Please enter a heading for this card.';
-    $attributes['body'] ??= 'Please enter a body for this card.';
+    $heading = apply_filters('dashifen-card-heading', $attributes['heading'] ?? 'Please enter a heading for this card.');
+    $body = apply_filters('dashifen-card-body', $attributes['body'] ?? 'Please enter a body for this card.');
+    $cardClasses = join(' ', apply_filters('dashifen-card-classes', ['wp-block-dashifen-card']));
+    $headingClasses = join(' ', apply_filters('dashifen-card-heading-classes', ['heading']));
+    $bodyClasses = join(' ', apply_filters('dashifen-card-body-classes', ['body']));
     
-    return sprintf(
-      $format,
-      join(' ', $cardClasses),
-      join(' ', $headingClasses),
-      $attributes['heading'],
-      join(' ', $bodyClasses),
-      $attributes['body']
-    );
+    return sprintf($format, $cardClasses, $headingClasses, $heading, $bodyClasses, $body);
   }
 }
