@@ -1,5 +1,5 @@
 {
-  "name": "dashifen/deck-block",
+  "name": "dashifen/wp-plugin-deck-block",
   "description": "A WordPress Deck block, which contains between two and four Cards.",
   "minimum-stability": "stable",
   "type": "wordpress-plugin",
