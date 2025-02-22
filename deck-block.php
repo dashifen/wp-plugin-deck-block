@@ -11,7 +11,7 @@ use Dashifen\Blocks\DeckBlock\DeckBlock;
 use Dashifen\WPHandler\Handlers\HandlerException;
 
 if (!class_exists('Dashifen\Blocks\DeckBlock\DeckBlock')) {
-  require_once 'vendor/autoload.php';
+  require_once __DIR__ . '/vendor/autoload.php';
 }
 
 try {

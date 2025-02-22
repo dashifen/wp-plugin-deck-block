@@ -79,7 +79,7 @@ class DeckBlock extends AbstractPluginHandler
     $format = '<div class="%s" data-card-count="%d">%s</div>';
     $cardCount = $attributes['cardCount'] ?? $this->countCards($content);
     
-    // we start with a reasonable default with respect to our deck classes and
+    // we start with a reasonable default with respect to our deck classes, and
     // then we add a filter that folks could use to alter them.  this lets a
     // theme using this block add classes it needs to make its display work
     // without being forced to repeat CSS rules in multiple places, hopefully.
